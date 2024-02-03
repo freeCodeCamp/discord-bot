@@ -16,18 +16,24 @@ export const handleUnban: Subcommand = {
       const reason = interaction.options.getString("reason", true);
 
       if (target.id === member.user.id) {
-        await interaction.editReply("You cannot unban yourself.");
+        await interaction.editReply(
+          "How are you running this if you're banned?"
+        );
         return;
       }
       if (target.id === Bot.user?.id) {
-        await interaction.editReply("You cannot unban the bot.");
+        await interaction.editReply(
+          "I can't be banned, so no need to unban me. >:3"
+        );
         return;
       }
 
       const targetBan = await guild.bans.fetch(target.id).catch(() => null);
 
       if (!targetBan) {
-        await interaction.editReply("That user does not appear to be banned.");
+        await interaction.editReply(
+          "Are you sure they're banned? I don't have a record of that..."
+        );
         return;
       }
 
@@ -57,7 +63,7 @@ export const handleUnban: Subcommand = {
 
       await Bot.config.mod_hook.send({ embeds: [banLogEmbed] });
       await interaction.editReply({
-        content: "They have been unbanned.",
+        content: "All done~! :3",
       });
     } catch (err) {
       await errorHandler(Bot, err);

@@ -24,7 +24,7 @@ export const handleMute: Subcommand = {
 
       if (!isValidTimeUnit(durationUnit)) {
         await interaction.editReply({
-          content: `${durationUnit} is not a valid duration unit.`,
+          content: `I don't know what you mean by ${durationUnit}... :c`,
         });
         return;
       }
@@ -36,24 +36,25 @@ export const handleMute: Subcommand = {
 
       if (!durationMilliseconds) {
         await interaction.editReply({
-          content: `${duration}${durationUnit} is not a valid duration.`,
+          content: `I don't know what you mean by ${duration}${durationUnit}... :c`,
         });
         return;
       }
 
       if (durationMilliseconds > 2419200000) {
         await interaction.editReply({
-          content: "You cannot mute someone for longer than a month.",
+          content:
+            "I'm so sorry, but my RAM cannot hold a mute for longer than 1 month.",
         });
         return;
       }
 
       if (target.id === member.user.id) {
-        await interaction.editReply("You cannot mute yourself.");
+        await interaction.editReply("Why are you trying to punish yourself?");
         return;
       }
       if (target.id === Bot.user?.id) {
-        await interaction.editReply("You cannot mute the bot.");
+        await interaction.editReply("Wait, what did I do wrong? :c");
         return;
       }
 
@@ -62,7 +63,7 @@ export const handleMute: Subcommand = {
         .catch(() => null);
 
       if (!targetMember) {
-        await interaction.editReply("They don't seem to be in this server.");
+        await interaction.editReply("Oh... they've left, I think.");
         return;
       }
 
@@ -107,7 +108,7 @@ export const handleMute: Subcommand = {
       await Bot.config.mod_hook.send({ embeds: [muteEmbed] });
 
       await interaction.editReply({
-        content: "They have been muted!",
+        content: "All done! :3",
       });
     } catch (err) {
       await errorHandler(Bot, err);

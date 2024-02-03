@@ -17,11 +17,11 @@ export const handleKick: Subcommand = {
       const reason = interaction.options.getString("reason", true);
 
       if (target.id === member.user.id) {
-        await interaction.editReply("You cannot kick yourself.");
+        await interaction.editReply("Why are you trying to punish yourself?");
         return;
       }
       if (target.id === Bot.user?.id) {
-        await interaction.editReply("You cannot kick the bot.");
+        await interaction.editReply("Wait, what did I do wrong? :c");
         return;
       }
 
@@ -30,7 +30,7 @@ export const handleKick: Subcommand = {
         .catch(() => null);
 
       if (!targetMember || !targetMember.kickable) {
-        await interaction.editReply("I cannot kick them.");
+        await interaction.editReply("Oh dear, I can't seem to kick them. :c");
         return;
       }
 
@@ -71,7 +71,7 @@ export const handleKick: Subcommand = {
       });
 
       await Bot.config.mod_hook.send({ embeds: [kickLogEmbed] });
-      await interaction.editReply({ content: "They have been kicked." });
+      await interaction.editReply({ content: "All done! :3" });
     } catch (err) {
       await errorHandler(Bot, err);
       await interaction.editReply("Something went wrong.");

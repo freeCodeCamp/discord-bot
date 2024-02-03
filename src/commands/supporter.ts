@@ -26,7 +26,8 @@ export const supporter: Command = {
       const { member } = interaction;
       if (member.roles.cache.has(SupporterRoleId)) {
         await interaction.editReply({
-          content: "You have already claimed the supporter role.",
+          content:
+            "Darling, you're already a supporter! Your enthusiasm is great, but you can't be a supporter twice. :3",
         });
         return;
       }
@@ -38,7 +39,7 @@ export const supporter: Command = {
       if (existsByUserId) {
         await interaction.editReply({
           content:
-            "A supporter record already exists on your Discord account. If you believe this is an error, please contact Naomi.",
+            "It looks like your Discord account is already a supporter! If you don't have the role, reach out to <@!465650873650118659>",
         });
         return;
       }
@@ -50,7 +51,7 @@ export const supporter: Command = {
       if (existsByEmail) {
         await interaction.editReply({
           content:
-            "A supporter record already exists on your email. If you believe this is an error, please contact Naomi.",
+            "It looks like your email is already a supporter! If you don't have the role, reach out to <@!465650873650118659>",
         });
         return;
       }
@@ -64,7 +65,7 @@ export const supporter: Command = {
       if (!learnRecord.isDonating) {
         await interaction.editReply({
           content:
-            "You do not appear to be actively supporting freeCodeCamp at this time. If you believe this is an error, please contact Naomi.",
+            "Hmmm, it looks like you aren't flagged as a supporter. Please reach out to <@!465650873650118659> if you think I am wrong! :3",
         });
         return;
       }

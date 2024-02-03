@@ -23,7 +23,7 @@ export const handleHistory: Subcommand = {
 
       if (!targetRecord) {
         await interaction.editReply({
-          content: "That user is absolutely squeaky clean!",
+          content: "That user is absolutely squeaky clean! :3",
         });
         return;
       }

@@ -17,11 +17,11 @@ export const handleBan: Subcommand = {
       const reason = interaction.options.getString("reason", true);
 
       if (target.id === member.user.id) {
-        await interaction.editReply("You cannot ban yourself.");
+        await interaction.editReply("Why are you trying to punish yourself?");
         return;
       }
       if (target.id === Bot.user?.id) {
-        await interaction.editReply("You cannot ban the bot.");
+        await interaction.editReply("Wait, what did I do wrong? :c");
         return;
       }
 
@@ -30,7 +30,7 @@ export const handleBan: Subcommand = {
         .catch(() => null);
 
       if (!targetMember || !targetMember.bannable) {
-        await interaction.editReply("I cannot ban them.");
+        await interaction.editReply("Oh dear, I can't seem to ban them. :c");
         return;
       }
 
@@ -75,7 +75,7 @@ export const handleBan: Subcommand = {
 
       await Bot.config.mod_hook.send({ embeds: [banLogEmbed] });
       await interaction.editReply({
-        content: "They have been banned.",
+        content: "All done! :3",
       });
     } catch (err) {
       await errorHandler(Bot, err);

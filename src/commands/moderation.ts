@@ -189,11 +189,15 @@ export const moderation: Command = {
     try {
       const handler = handlers[interaction.options.getSubcommand(true)];
       if (!handler) {
-        await interaction.reply("Invalid subcommand.");
+        await interaction.reply(
+          "Oh dear, it would seem that module has not been unlocked yet. :c"
+        );
         return;
       }
       if (!handler.permissionValidator(interaction.member)) {
-        await interaction.reply("You do not have permission to do this.");
+        await interaction.reply(
+          "I'm so sorry, but you don't have root permissions for my features."
+        );
         return;
       }
       await handler.execute(bot, interaction);

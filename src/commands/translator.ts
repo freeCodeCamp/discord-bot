@@ -31,13 +31,13 @@ export const translator: Command = {
       );
       if (!isValidLang) {
         await interaction.editReply({
-          content: `${lang} is not one of the languages we are translating at this time.`,
+          content: `I'm so sorry, but ${lang} isn't something we're translating right now. :c`,
         });
         return;
       }
       if (!isValidRole) {
         await interaction.editReply({
-          content: `${lang} does not have a role associated with it. Please notify Naomi.`,
+          content: `Oh dear, there's no role for ${lang}! Please notify <@!465650873650118659>. :c`,
         });
         return;
       }
@@ -45,11 +45,13 @@ export const translator: Command = {
       const hasRole = interaction.member.roles.cache.has(isValidRole.id);
       if (hasRole) {
         await interaction.member.roles.remove(isValidRole.id);
-        await interaction.editReply(`You are no longer in the ${lang} group.`);
+        await interaction.editReply(
+          `I have removed you from the ${lang} group, but I hope you come back soon!`
+        );
         return;
       }
       await interaction.member.roles.add(isValidRole.id);
-      await interaction.editReply(`You are now in the ${lang} group.`);
+      await interaction.editReply(`Yay! You're now in the ${lang} group! :3`);
     } catch (err) {
       await errorHandler(bot, err);
     }

@@ -17,11 +17,13 @@ export const handleUnmute: Subcommand = {
       const reason = interaction.options.getString("reason", true);
 
       if (target.id === member.user.id) {
-        await interaction.editReply("You cannot unmute yourself.");
+        await interaction.editReply(
+          "If you were muted, you couldn't use this command..."
+        );
         return;
       }
       if (target.id === Bot.user?.id) {
-        await interaction.editReply("You cannot unmute the bot.");
+        await interaction.editReply("I can never be silenced >:3");
         return;
       }
 

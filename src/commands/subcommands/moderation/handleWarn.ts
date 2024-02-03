@@ -22,12 +22,11 @@ export const handleWarn: Subcommand = {
       const reason = interaction.options.getString("reason", true);
 
       if (target.id === member.user.id) {
-        await interaction.editReply("You cannot warn yourself.");
+        await interaction.editReply("Why are you trying to punish yourself?");
         return;
       }
-
       if (target.id === Bot.user?.id) {
-        await interaction.editReply("You cannot warn the bot.");
+        await interaction.editReply("Wait, what did I do wrong? :c");
         return;
       }
 

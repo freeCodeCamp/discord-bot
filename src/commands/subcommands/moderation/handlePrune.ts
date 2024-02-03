@@ -12,7 +12,8 @@ export const handlePrune: Subcommand = {
       const { channel } = interaction;
       if (!channel || channel.type !== ChannelType.GuildText) {
         await interaction.editReply({
-          content: "Must be done in a text channel.",
+          content:
+            "I can't prune messages from a channel that doesn't have messages!",
         });
         return;
       }
@@ -21,7 +22,9 @@ export const handlePrune: Subcommand = {
       for (const msg of messages.values()) {
         await msg.delete().catch(() => null);
       }
-      await interaction.editReply({ content: `Deleted ${count} messages.` });
+      await interaction.editReply({
+        content: `All done~! :3\nDeleted ${count} messages.`,
+      });
     } catch (err) {
       await errorHandler(Bot, err);
       await interaction.editReply("Something went wrong.");
